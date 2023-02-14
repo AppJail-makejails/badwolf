@@ -18,7 +18,7 @@ hacktivis.me/projects/badwolf
 
 ```
 INCLUDE options/network.makejail
-INCLUDE badwolf/Makejail
+INCLUDE gh+AppJail-makejails/badwolf
 
 OPTION copydir=files
 OPTION file=/etc/rc.conf
