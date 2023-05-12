@@ -13,7 +13,7 @@ STAGE create
 
 CMD --local xhost +
 
-STAGE cmd
+STAGE custom:badwolf_open
 
 ARG display=:0
 
