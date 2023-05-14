@@ -65,4 +65,6 @@ After Makejail builds the jail, you can run Badwolf using the `badwolf_open` cus
 
 ```sh
 appjail run -s badwolf_open badwolf
+# or to open a specific website:
+appjail run -s badwolf_open -p url=http://example.org badwolf
 ```
