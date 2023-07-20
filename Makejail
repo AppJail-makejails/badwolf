@@ -1,6 +1,8 @@
 INCLUDE options/options.makejail
 
-PKG badwolf mesa-dri
+ARG badwolf_tag=13.2
+
+FROM --entrypoint gh+AppJail-makejails/badwolf badwolf:${badwolf_tag}
 
 CMD pw useradd -n badwolf -c "Minimalist and privacy-oriented WebKitGTK+ browser" -d /home/badwolf -s /bin/sh
 CMD mkdir -p /home/badwolf/.local/share/badwolf/webkit-web-extension
