@@ -1,17 +1,9 @@
-tags: 13.1
-13.1.arch: amd64
-13.1.name: "badwolf"
-13.1.timestamp.amd64: 1689896340
-13.1.sum.amd64: ef40e5d61f6afa3dd2368fb0d94e0e80c076dd9bd1bdd67678354e499dd0a02a
-13.1.size.amd64: 383454008
-13.1.source.amd64: https://dtxdf.duckdns.org/y7s0p534z9/badwolf_13_1_amd64_image_appjail
-13.1.source.amd64+: https://anonget.onrender.com/y7s0p534z9/badwolf_13_1_amd64_image_appjail
-
-tags+: 13.2
+tags: 13.2
 13.2.arch: amd64
 13.2.name: "badwolf"
-13.2.timestamp.amd64: 1689896380
-13.2.sum.amd64: 80b4fdafbd290ffc66a5b9c341d28a545c00bc904bd2d42d7318a5310ea1ba34
-13.2.size.amd64: 384667032
-13.2.source.amd64: https://dtxdf.duckdns.org/h4s8pe31zb/badwolf_13_2_amd64_image_appjail
-13.2.source.amd64+: https://anonget.onrender.com/h4s8pe31zb/badwolf_13_2_amd64_image_appjail
+13.2.timestamp.amd64: 1691326918
+13.2.sum.amd64: c09a81a4ed5c242f0a86b621f62b3875452e0e89451a22f472839803e31dec81
+13.2.size.amd64: 380944512
+13.2.source.amd64: https://dtxdf.duckdns.org/qby1R76fz9/badwolf_13_2_amd64_image_appjail
+13.2.source.amd64+: https://storm-bsd.duckdns.org/qby1R76fz9/badwolf_13_2_amd64_image_appjail
+13.2.source.amd64+: https://anonget.onrender.com/qby1R76fz9/badwolf_13_2_amd64_image_appjail
