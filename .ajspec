@@ -1,9 +1,7 @@
 tags: 13.2
 13.2.arch: amd64
 13.2.name: "badwolf"
-13.2.timestamp.amd64: 1691326918
-13.2.sum.amd64: c09a81a4ed5c242f0a86b621f62b3875452e0e89451a22f472839803e31dec81
-13.2.size.amd64: 380944512
-13.2.source.amd64: https://dtxdf.duckdns.org/qby1R76fz9/badwolf_13_2_amd64_image_appjail
-13.2.source.amd64+: https://storm-bsd.duckdns.org/qby1R76fz9/badwolf_13_2_amd64_image_appjail
-13.2.source.amd64+: https://anonget.onrender.com/qby1R76fz9/badwolf_13_2_amd64_image_appjail
+13.2.timestamp.amd64: 1692061725
+13.2.sum.amd64: b8976926210d480429d6ce6c52b1e62dc4e632548e889171a8cedfeb2f6be26e
+13.2.size.amd64: 382232068
+13.2.source.amd64: "https://drive.google.com/uc?export=download&id=1rpT4ATc-F_0qdqUVsN1j4tftC970Bsys&confirm=t&uuid=e040e547-d5bd-4a53-b812-ed7e100db1c5"
