@@ -1,7 +1,7 @@
 tags: 13.2
 13.2.arch: amd64
 13.2.name: "badwolf"
-13.2.timestamp.amd64: 1692942882
-13.2.sum.amd64: efea913c5be9ffe9b8de094e40042b31dbfa4d8ea0b74274eaf0035a8b0c7a29
-13.2.size.amd64: 387429556
+13.2.timestamp.amd64: 1693677298
+13.2.sum.amd64: 1a6951a789443c2c71a7936832356a0ec5179fb976b40b493508cb7b0eba2ebb
+13.2.size.amd64: 388013712
 13.2.source.amd64: "http://appjail.hpc.at/badwolf/13.2-amd64-image.appjail"
