@@ -13,14 +13,12 @@ COPY usr
 
 STOP
 
-STAGE create
-
-CMD --local xhost +
-
 STAGE custom:badwolf_open
 
 ARG display=:0
 ARG url?
+
+CMD --local env "DISPLAY=${display}" xhost + > /dev/null
 
 ENV DISPLAY=${display}
 ENV URL=${url}
