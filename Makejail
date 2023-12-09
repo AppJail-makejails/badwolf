@@ -15,13 +15,7 @@ STOP
 
 STAGE custom:badwolf_open
 
-ARG display=:0
-ARG url?
-
-CMD --local env "DISPLAY=${display}" xhost + > /dev/null
-
-ENV DISPLAY=${display}
-ENV URL=${url}
+ENV DISPLAY=:0
 
 USER badwolf
 RUN badwolf.sh
