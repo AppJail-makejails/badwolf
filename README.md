@@ -79,4 +79,4 @@ appjail run -s badwolf_open -V URL=http://example.org badwolf
 | Tag        | Arch    | Version        | Type   |
 | ---------- | ------- | -------------- | ------ |
 | `13.3`     | `amd64` | `13.3-RELEASE` | `thin` |
-| `14.0`     | `amd64` | `14.0-RELEASE` | `thin` |
+| `14.1`     | `amd64` | `14.1-RELEASE` | `thin` |
