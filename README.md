@@ -72,11 +72,11 @@ appjail run -s badwolf_open -V URL=http://example.org badwolf
 
 ### Arguments
 
-* `badwolf_tag` (default: `13.3`): see [#tags](#tags).
+* `badwolf_tag` (default: `13.4`): see [#tags](#tags).
 
 ## Tags
 
 | Tag        | Arch    | Version        | Type   |
 | ---------- | ------- | -------------- | ------ |
-| `13.3`     | `amd64` | `13.3-RELEASE` | `thin` |
+| `13.4`     | `amd64` | `13.4-RELEASE` | `thin` |
 | `14.1`     | `amd64` | `14.1-RELEASE` | `thin` |
