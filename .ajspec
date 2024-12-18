@@ -1,16 +1,17 @@
 tags+: 13.4
 13.4.arch: amd64
 13.4.name: "badwolf"
-13.4.timestamp.amd64: 1733889321
-13.4.sum.amd64: 86dbfcef07f2a9c458054f332f67e876628f753d78c3aa74e9a07288b9ed1a3c
-13.4.size.amd64: 557819876
+13.4.timestamp.amd64: 1734506319
+13.4.sum.amd64: cd190792fd53fb638e24bd144704643c164efe18151620778288916e744c6a6e
+13.4.size.amd64: 557823480
 13.4.source.amd64: "http://appjail.hpc.at/badwolf/13.4-amd64-image.appjail"
 13.4.source.amd64+: "https://images.all101bsd.download/badwolf/13.4-amd64-image.appjail"
 tags+: 14.2
 14.2.arch: amd64
 14.2.name: "badwolf"
-14.2.timestamp.amd64: 1733889869
-14.2.sum.amd64: fd278a63539a5ed971be1cab4701b0c259ddd673050f5cf5a82fc0e7c09af7ef
-14.2.size.amd64: 560533684
+14.2.timestamp.amd64: 1734506539
+14.2.sum.amd64: fc825a6b55f111ad190190620e5e75f491e0b2531132532341ff6b162aed6255
+14.2.size.amd64: 560966944
 14.2.source.amd64: "http://appjail.hpc.at/badwolf/14.2-amd64-image.appjail"
 14.2.source.amd64+: "https://images.all101bsd.download/badwolf/14.2-amd64-image.appjail"
+maintenance: "This image is uploading, please wait a moment and try again. If you are importing this image using a Makejail that has the '--<name>_ajspec' argument, you can use the 'reproduce' method to use 'appjail-reproduce'. See 'appjail-image(5)' for details."
