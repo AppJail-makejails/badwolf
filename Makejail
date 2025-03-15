@@ -1,6 +1,6 @@
 INCLUDE options/options.makejail
 
-ARG badwolf_tag=13.4
+ARG badwolf_tag=13.5
 ARG badwolf_ajspec=gh+AppJail-makejails/badwolf
 
 FROM --entrypoint "${badwolf_ajspec}" badwolf:${badwolf_tag}
