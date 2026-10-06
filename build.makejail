@@ -1,3 +1,0 @@
-INCLUDE options/options.makejail
-
-PKG badwolf mesa-dri
