@@ -57,81 +57,30 @@ KEY                                                                   COMMENT
 
 ### User Attributes
 
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.enable_3d`
-
-This permission will execute the application using VirtualGL and make hardware acceleration-related devices visible.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.jail.ephemeral`
-
-Mark the jail as ephemeral. See `ephemeral` option in `appjail-quick(1)` for details.
-
-Although the jail may be destroyed, its data is preserved in the user directory (see `${X11APPJAIL_USERDIR}` in `x11appjail-spec(5)`).
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.sound`
-
-This permission will make sound-related devices visible.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.usb`
-
-This permission will make usb-related devices visible.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.virtualgl.display`
-
-If the user has the `enable_3d` permission, this specifies the display or EGL device to be used for 3D rendering. Since using EGL is the only logical choice for this project, the default value is `egl`. In multi-GPU environments, it is possible to specify a particular device.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.webcam`
-
-This permission will make webcam-related devices visible.
+| Name | Description |
+| --- | --- |
+| `enable_3d` | This permission will execute the application using VirtualGL and make hardware acceleration-related devices visible.|
+| `ephemeral` | Mark the jail as ephemeral. See `ephemeral` option in `appjail-quick(1)` for details.<br><br>Although the jail may be destroyed, its data is preserved in the user directory (see `${X11APPJAIL_USERDIR}` in `x11appjail-spec(5)`).<br>|
+| `sound` | This permission will make sound-related devices visible.|
+| `usb` | This permission will make usb-related devices visible.|
+| `virtualgl-display` | If the user has the `enable_3d` permission, this specifies the display or EGL device to be used for 3D rendering. Since using EGL is the only logical choice for this project, the default value is `egl`. In multi-GPU environments, it is possible to specify a particular device.|
+| `webcam` | This permission will make webcam-related devices visible.|
 
 ### System Attributes
 
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.labels`
-
-A space-separated list of label names.
-##### `network.mode`
-
-Network mode. Default is `none`.
-
-There are three modes:
-
-1. `virtualnet`: This option is recommended, as it provides isolation and allows a more fine-grained control. It's necessary to install and configure AppJail on the host, as specified in the "[Getting Started](https://appjail.readthedocs.io/en/latest/getting-started/)" guide.
-2. `inherit`: This mode does not provide network isolation. From a networking perspective, it is exactly the same as running the application on the host.
-3. `none`: Completely disable the network stack.
-##### `oci.from`
-
-Location of OCI image.
-##### `oci.tag`
-
-OCI image tag.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.labels.<label>`
-
-The value of the label.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.from`
-
-Same as `oci.from`, but by application. It takes precedence when defined.
-##### `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.tag`
-
-Same as `oci.tag`, but by application. It takes precedence when defined.
-##### `users.${X11APPJAIL_UID}.perms`
-
-A space-separated list of "permissions" granted to a specific user.
-
-The implemented "permissions" are presented below:
-
-* `enable_3d`
-* `webcam`
-* `usb`
-* `sound`
-
-For a description of any of them, consult `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.<permission>` in the "[User Attributes](#user-attributes)" section.
-##### `network.security-group.tables`
-
-If `network.mode` is set to `virtualnet`, this attribute specifies a space-separated list of `pf(4)` tables to which the jail will be added using Security Group hooks.
-
-If you are going to add additional labels related to Security Groups, do not include `security-group:1`, as this attribute already include it.
-
-See also: https://github.com/DtxdF/AppJail/wiki/filter
-##### `mount.system-fonts`
-
-Read-only mounts the fonts system inside the jail, configure Fontconfig, and rebuild the font cache.
-##### `network.virtualnet`
-
-Specify the virtual network to be used when `network.mode` is set to `virtualnet`. If not specified, no virtual network is defined, so the default one is used.
+| Name | Description |
+| --- | --- |
+| `labels` | A space-separated list of label names.|
+| `network-mode` | Network mode. Default is `none`.<br><br>There are three modes:<br><br>1. `virtualnet`: This option is recommended, as it provides isolation and allows a more fine-grained control. It's necessary to install and configure AppJail on the host, as specified in the "[Getting Started](https://appjail.readthedocs.io/en/latest/getting-started/)" guide.<br>2. `inherit`: This mode does not provide network isolation. From a networking perspective, it is exactly the same as running the application on the host.<br>3. `none`: Completely disable the network stack.<br>|
+| `oci-from` | Location of OCI image.|
+| `oci-tag` | OCI image tag.|
+| `per-labels` | The value of the label.|
+| `per-oci-from` | Same as `oci.from`, but by application. It takes precedence when defined.|
+| `per-oci-tag` | Same as `oci.tag`, but by application. It takes precedence when defined.|
+| `perms` | A space-separated list of "permissions" granted to a specific user.<br><br>The implemented "permissions" are presented below:<br><br>* `enable_3d`<br>* `webcam`<br>* `usb`<br>* `sound`<br><br>For a description of any of them, consult `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.<permission>` in the "[User Attributes](#user-attributes)" section.<br>|
+| `secgroup-tables` | If `network.mode` is set to `virtualnet`, this attribute specifies a space-separated list of `pf(4)` tables to which the jail will be added using Security Group hooks.<br><br>If you are going to add additional labels related to Security Groups, do not include `security-group:1`, as this attribute already include it.<br><br>See also: https://github.com/DtxdF/AppJail/wiki/filter<br>|
+| `system-fonts` | Read-only mounts the fonts system inside the jail, configure Fontconfig, and rebuild the font cache.|
+| `virtualnet` | Specify the virtual network to be used when `network.mode` is set to `virtualnet`. If not specified, no virtual network is defined, so the default one is used.|
 
 ## OCI Configuration
 
