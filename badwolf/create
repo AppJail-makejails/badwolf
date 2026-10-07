@@ -118,9 +118,9 @@ set -- "$@" --pgid "${X11APPJAIL_GID}"
 
 OCI_FROM=
 if x11appjail sys-attr check "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.from"; then
-    OCI_FROM=`x11appjail sys-attr cat oci.from "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.from"`
+    OCI_FROM=`x11appjail sys-attr cat "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.from"`
 elif x11appjail sys-attr check "oci.from"; then
-    OCI_FROM=`x11appjail sys-attr cat oci.from "oci.from"`
+    OCI_FROM=`x11appjail sys-attr cat oci.from`
 fi
 if [ -n "${OCI_FROM}" ]; then
     set -- "$@" --from "${OCI_FROM}"
@@ -128,9 +128,9 @@ fi
 
 OCI_TAG=
 if x11appjail sys-attr check "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.tag"; then
-    OCI_TAG=`x11appjail sys-attr cat oci.tag "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.tag"`
+    OCI_TAG=`x11appjail sys-attr cat "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.oci.tag"`
 elif x11appjail sys-attr check "oci.tag"; then
-    OCI_TAG=`x11appjail sys-attr cat oci.tag "oci.tag"`
+    OCI_TAG=`x11appjail sys-attr cat oci.tag`
 fi
 if [ -n "${OCI_TAG}" ]; then
     set -- "$@" --tag "${OCI_TAG}"
