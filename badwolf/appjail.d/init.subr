@@ -1,0 +1,6 @@
+
+set -e -o pipefail
+
+set --
+set -- "$@" -j "${X11APPJAIL_JAIL}"
+set -- "$@" -f "${X11APPJAIL_WORKDIR}/Makejail"

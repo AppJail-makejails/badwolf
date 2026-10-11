@@ -1,0 +1,7 @@
+OPTION start
+OPTION overwrite=force
+OPTION from=${from}:${tag}
+OPTION container=args:--pull=newer
+OPTION volume=data mountpoint:/noroot owner:${puid} group:${pgid}
+OPTION template=template.conf
+OPTION meta=x11appjail.exec.user:noroot

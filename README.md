@@ -172,6 +172,7 @@ The above assumes that the jail is allowed to connect to `1.1.1.1` and send ICMP
 | `oci.from` | Location of OCI image.|
 | `oci.tag` | OCI image tag.|
 | `<appname>:<profile>.labels.<label>` | The value of the label.|
+| `<appname>:<profile>.network.mode` | Same as `network.mode`, but by application. It takes precedence when defined.|
 | `<appname>:<profile>.oci.from` | Same as `oci.from`, but by application. It takes precedence when defined.|
 | `<appname>:<profile>.oci.tag` | Same as `oci.tag`, but by application. It takes precedence when defined.|
 | `users.<uid>.perms` | A space-separated list of "permissions" granted to a specific user.<br><br>The implemented "permissions" are presented below:<br><br>* `enable_3d`<br>* `webcam`<br>* `usb`<br>* `sound`<br><br>For a description of any of them, consult `${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.allow.<permission>` in the "[User Attributes](#user-attributes)" section.<br>|

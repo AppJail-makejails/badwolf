@@ -1,0 +1,42 @@
+
+set -e -o pipefail
+
+JEXEC="${X11APPJAIL_BASEDIR}/usr/local/libexec/appjail/jexec/jexec"
+
+. "${X11APPJAIL_WORKDIR}/appjail.d/perms.subr"
+
+if [ -n "${__run_program}" ]; then
+    set -- "${__run_program}" "$@"
+fi
+
+if ${__perms_allow_3d}; then
+    VGL_DISPLAY="egl"
+    ATTR="${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.virtualgl.display"
+
+    if x11appjail sys-attr check "${ATTR}" "${X11APPJAIL_UID}"; then
+        VGL_DISPLAY=`x11appjail sys-attr cat "${ATTR}" "${X11APPJAIL_UID}"`
+    fi
+
+    set -- /usr/local/VirtualGL/bin/vglrun -d "${VGL_DISPLAY}" "$@"
+fi
+
+set -- "${X11APPJAIL_JAIL}" "$@"
+
+if [ -n "${X11APPJAIL_DISPLAY}" ]; then
+    set -- -e "DISPLAY=${X11APPJAIL_DISPLAY}" "$@"
+fi
+
+if [ -d "${X11APPJAIL_WORKDIR}/env.d" ]; then
+    for ENV_FILE in "${X11APPJAIL_WORKDIR}/env.d"/*; do
+        if [ "${ENV_FILE}" = "${X11APPJAIL_WORKDIR}/env.d/*" ]; then
+            break
+        fi
+
+        ENV_NAME="${ENV_FILE##*/}"
+        ENV_VALUE=`cat -- "${ENV_FILE}"`
+
+        set -- -e "${ENV_NAME}=${ENV_VALUE}" "$@"
+    done
+fi
+
+exec "${JEXEC}" -l -U noroot "$@"

@@ -1,0 +1,7 @@
+ARG puid
+ARG pgid
+
+CMD pw groupadd -n noroot -g "${pgid}" && \
+    pw useradd -n noroot -d /noroot -u "${puid}" -g "${pgid}" && \
+    mkdir -p /noroot && \
+    chown -R noroot:noroot /noroot
