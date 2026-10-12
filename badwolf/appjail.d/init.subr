@@ -1,6 +1,8 @@
 
 set -e -o pipefail
 
+. "${X11APPJAIL_WORKDIR}/appjail.d/lib.subr"
+
 set --
 set -- "$@" -j "${X11APPJAIL_JAIL}"
 set -- "$@" -f "${X11APPJAIL_WORKDIR}/Makejail"

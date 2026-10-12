@@ -13,7 +13,7 @@ if [ "${__network_mode}" = "inherit" ]; then
     set -- "$@" -o alias -o ip4_inherit -o ip6_inherit
 elif [ "${__network_mode}" = "virtualnet" ]; then
     if [ "${APPJAIL_SELF_CONTAINED}" != 0 ]; then
-        echo "ERROR: Virtual Networks requires AppJail to be installed on the host."
+        err "Virtual Networks requires AppJail to be installed on the host."
         exit 1
     fi
 
@@ -24,7 +24,7 @@ elif [ "${__network_mode}" = "virtualnet" ]; then
     set -- "$@" -o virtualnet="${VIRTUALNET}:<random> default" -o nat
 else
     if [ "${__network_mode}" != "none" ]; then
-        echo "WARNING: invalid network mode '${__network_mode}', falling back to 'none'" >&2
+        warn "Invalid network mode '${__network_mode}', falling back to 'none'"
     fi
     set -- "$@" -o alias -o ip4_disable -o ip6_disable
 fi
