@@ -16,7 +16,7 @@ RUN set -xe; \
     sysrc clear_tmp_X=NO; \
     \
     pkg update; \
-    pkg install badwolf dbus; \
+    pkg install badwolf; \
     \
     if [ -z "${NO_PKGCLEAN}" ]; then \
         pkg clean -a; \

@@ -1,2 +1,0 @@
-SERVICE dbus enable
-SERVICE dbus start

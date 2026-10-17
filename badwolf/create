@@ -6,6 +6,7 @@
 . "${X11APPJAIL_WORKDIR}/appjail.d/ephemeral.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/labels.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/fonts.subr"
+. "${X11APPJAIL_WORKDIR}/appjail.d/dbus-dirs.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/datadir.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/end.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/oci.subr"

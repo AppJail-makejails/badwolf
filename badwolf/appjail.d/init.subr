@@ -2,6 +2,9 @@
 set -e -o pipefail
 
 . "${X11APPJAIL_WORKDIR}/appjail.d/lib.subr"
+. "${X11APPJAIL_WORKDIR}/appjail.d/dbus.subr"
+
+"${X11APPJAIL_WORKDIR}/appjail.d/clean"
 
 set --
 set -- "$@" -j "${X11APPJAIL_JAIL}"

@@ -1,8 +1,11 @@
 
 set -e -o pipefail
 
+# jexec(8)
 JEXEC="${X11APPJAIL_BASEDIR}/usr/local/libexec/appjail/jexec/jexec"
 
+. "${X11APPJAIL_WORKDIR}/appjail.d/lib.subr"
+. "${X11APPJAIL_WORKDIR}/appjail.d/dbus.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/perms.subr"
 
 if [ -n "${__run_program}" ]; then
@@ -37,6 +40,20 @@ if [ -d "${X11APPJAIL_WORKDIR}/env.d" ]; then
 
         set -- -e "${ENV_NAME}=${ENV_VALUE}" "$@"
     done
+fi
+
+if [ "${__dbus_system_mode}" != "none" ]; then
+    set -- -e "DBUS_SYSTEM_BUS_ADDRESS=unix:path=/var/run/dbus/system_bus_socket" "$@"
+
+    start_dbus "dbus-system" "${__dbus_system_mode}" "${__dbus_system_pidfile}" "${X11APPJAIL_DBUS_SYSTEM_BUS_ADDRESS}" \
+        "${__dbus_system_sock}"
+fi
+
+if [ "${__dbus_session_mode}" != "none" ]; then
+    set -- -e "DBUS_SESSION_BUS_ADDRESS=unix:path=/var/run/dbus-session/session_bus_socket" "$@"
+
+    start_dbus "dbus-user" "${__dbus_session_mode}" "${__dbus_session_pidfile}" "${X11APPJAIL_DBUS_SESSION_BUS_ADDRESS}" \
+        "${__dbus_session_sock}"
 fi
 
 exec "${JEXEC}" -l -U noroot "$@"

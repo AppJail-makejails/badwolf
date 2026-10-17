@@ -57,7 +57,7 @@ jobs:
 
             appscript -v
             x11appjail version
-            x11appjail build -OS -s dtxdf@disroot.org:sign_key.sec "${REPO_NAME}"
+            x11appjail build -LOS -s dtxdf@disroot.org:sign_key.sec "${REPO_NAME}"
       - name: Release
         id: release
         uses: softprops/action-gh-release@v3
