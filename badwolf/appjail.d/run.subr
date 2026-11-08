@@ -1,6 +1,17 @@
 
 set -e -o pipefail
 
+CLEAN_SCRIPT="/var/run/x11appjail/clean/${X11APPJAIL_JAIL}"
+
+if [ -x "${CLEAN_SCRIPT}" ]; then
+    #
+    # xdg-dbus-proxy may be using an old and therefore invalid D-Bus
+    # address, causing applications to display error messages and fail
+    # when communicating via D-Bus.
+    #
+    "${CLEAN_SCRIPT}"
+fi
+
 # jexec(8)
 JEXEC="${X11APPJAIL_BASEDIR}/usr/local/libexec/appjail/jexec/jexec"
 

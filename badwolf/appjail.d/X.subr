@@ -16,7 +16,7 @@ XEPHYR_ARGS="\
 -title \"${X11APPJAIL_TITLE}\""
 
 exec "${APPJAIL}" x11 "${X11APPJAIL_JAIL}" \
-    exec_start="ratpoison" \
+    exec_start="openbox-session" \
     exec_user="noroot" \
     xephyr_user="${X11APPJAIL_UID}" \
     xephyr_args="${XEPHYR_ARGS}" \
