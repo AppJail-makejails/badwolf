@@ -4,10 +4,12 @@ __dbus_rootdir="/var/run/x11appjail/dbus"
 __dbus_userdir="${__dbus_rootdir}/${X11APPJAIL_UID}"
 __dbus_datadir="${__dbus_userdir}/${X11APPJAIL_APPNAME}.${X11APPJAIL_PROFILE}"
 # D-Bus (system)
+__dbus_system_addrfile="${__dbus_datadir}/system_bus_address"
 __dbus_system_dir="${__dbus_datadir}/system"
 __dbus_system_sock="${__dbus_system_dir}/system_bus_socket"
 __dbus_system_pidfile="${__dbus_system_dir}/pid"
 # D-Bus (session)
+__dbus_session_addrfile="${__dbus_datadir}/session_bus_address"
 __dbus_session_dir="${__dbus_datadir}/session"
 __dbus_session_sock="${__dbus_session_dir}/session_bus_socket"
 __dbus_session_pidfile="${__dbus_session_dir}/pid"
