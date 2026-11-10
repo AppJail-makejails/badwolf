@@ -92,11 +92,10 @@ start_dbus()
         done
     fi
 
-    local attrs
-    attrs=`x11appjail sys-attr ls "${X11APPJAIL_UID}"`
+    get_user_attrs
 
     local attr
-    for attr in ${attrs}; do
+    for attr in ${USER_ATTRS}; do
         local param=
 
         case "${attr}" in

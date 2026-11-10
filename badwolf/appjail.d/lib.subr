@@ -1,4 +1,13 @@
 
+USER_ATTRS=
+
+get_user_attrs()
+{
+    if [ -z "${USER_ATTRS}" ]; then
+        USER_ATTRS=`x11appjail sys-attr ls "${X11APPJAIL_UID}"`
+    fi
+}
+
 warn()
 {
     printf "##!> %s\n" "$*" >&2
