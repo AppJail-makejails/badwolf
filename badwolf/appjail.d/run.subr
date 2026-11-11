@@ -1,64 +1,14 @@
 
 set -e -o pipefail
 
-CLEAN_SCRIPT="/var/run/x11appjail/clean/${X11APPJAIL_JAIL}"
-
 # jexec(8)
 JEXEC="${X11APPJAIL_BASEDIR}/usr/local/libexec/appjail/jexec/jexec"
+
+__dbus_stop=true
 
 . "${X11APPJAIL_WORKDIR}/appjail.d/lib.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/dbus.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/perms.subr"
-
-if [ -x "${CLEAN_SCRIPT}" ]; then
-    # xdg-dbus-proxy may be using an old and therefore invalid D-Bus
-    # address, causing applications to display error messages and fail
-    # when communicating via D-Bus.
-
-    __dbus_system_addr=
-    if [ -f "${__dbus_system_addrfile}" ]; then
-        __dbus_system_addr=$(
-            (lockf 9 || exit 1; head -1 -- "${__dbus_system_addrfile}") 9>> "${__dbus_system_addrfile}" || exit 1
-            exec 9>&-
-        )
-    fi
-
-    __dbus_session_addr=
-    if [ -f "${__dbus_session_addrfile}" ]; then
-        __dbus_session_addr=$(
-            (lockf 9 || exit 1; head -1 -- "${__dbus_session_addrfile}") 9>> "${__dbus_session_addrfile}" || exit 1
-            exec 9>&-
-        )
-    fi
-
-    #
-    # Terminating xdg-dbus-proxy will kill the child process.
-    #
-    if [ "${__dbus_system_addr}" != "${X11APPJAIL_DBUS_SYSTEM_BUS_ADDRESS}" ] ||\
-            [ "${__dbus_session_addr}" != "${X11APPJAIL_DBUS_SESSION_BUS_ADDRESS}" ]; then
-        "${CLEAN_SCRIPT}"
-    fi
-
-    if [ -n "${X11APPJAIL_DBUS_SYSTEM_BUS_ADDRESS}" ]; then
-        (
-            lockf 9 || exit 1
-
-            printf "%s\n" "${X11APPJAIL_DBUS_SYSTEM_BUS_ADDRESS}" |\
-                tee "${__dbus_system_addrfile}" > /dev/null || exit 1
-        ) 9>> "${__dbus_system_addrfile}"
-        exec 9>&-
-    fi
-
-    if [ -n "${X11APPJAIL_DBUS_SESSION_BUS_ADDRESS}" ]; then
-        (
-            lockf 9 || exit 1
-
-            printf "%s\n" "${X11APPJAIL_DBUS_SESSION_BUS_ADDRESS}" |\
-                tee "${__dbus_session_addrfile}" > /dev/null || exit 1
-        ) 9>> "${__dbus_session_addrfile}"
-        exec 9>&-
-    fi
-fi
 
 if [ -n "${__run_program}" ]; then
     set -- "${__run_program}" "$@"
@@ -108,17 +58,10 @@ if [ "${__dbus_session_mode}" != "none" ]; then
         "${__dbus_session_sock}"
 fi
 
-get_user_attrs
+. "${X11APPJAIL_WORKDIR}/appjail.d/env.subr"
 
-for USER_ATTR in ${USER_ATTRS}; do
-    case "${USER_ATTR}" in
-        ${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.env.*) ;;
-        *) continue ;;
-    esac
-
-    USER_VALUE=`x11appjail sys-attr cat "${USER_ATTR}" "${X11APPJAIL_UID}"`
-
-    set -- -e "${USER_VALUE}" "$@"
-done
-
-exec "${JEXEC}" -l -U noroot "$@"
+if [ -z "${__run_stdin}" ]; then
+    exec "${JEXEC}" -l -U noroot "$@"
+else
+    cat -- "${__run_stdin}" | "${JEXEC}" -l -U noroot "$@"
+fi
