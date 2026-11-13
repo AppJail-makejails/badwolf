@@ -10,6 +10,10 @@ __dbus_stop=true
 . "${X11APPJAIL_WORKDIR}/appjail.d/dbus.subr"
 . "${X11APPJAIL_WORKDIR}/appjail.d/perms.subr"
 
+if ${__run_allow_entrypoint} && [ -n "${X11APPJAIL_ENTRYPOINT}" ]; then
+    __run_program="${X11APPJAIL_ENTRYPOINT}"
+fi
+
 if [ -n "${__run_program}" ]; then
     set -- "${__run_program}" "$@"
 fi

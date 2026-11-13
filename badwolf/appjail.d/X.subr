@@ -1,6 +1,33 @@
 
+. "${X11APPJAIL_WORKDIR}/appjail.d/lib.subr"
+
+FLAG_SIZE="-resizeable"
+
+if x11appjail sys-attr check "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.screen" "${X11APPJAIL_UID}"; then
+    SCREEN_SIZE=`x11appjail sys-attr cat "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.screen" "${X11APPJAIL_UID}"`
+
+    if ! printf "%s" "${SCREEN_SIZE}" | grep -qEe '^[0-9]+x[0-9]+$'; then
+        warn "Invalid screen size '${SCREEN_SIZE}', falling back to '${FLAG_SIZE}'"
+    else
+        FLAG_SIZE="-screen ${SCREEN_SIZE}"
+    fi
+fi
+
+FLAG_DPI=
+
+if x11appjail sys-attr check "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.dpi" "${X11APPJAIL_UID}"; then
+    DPI=`x11appjail sys-attr cat "${X11APPJAIL_APPNAME}:${X11APPJAIL_PROFILE}.dpi" "${X11APPJAIL_UID}"`
+
+    if ! printf "%s" "${DPI}" | grep -qEe '^[1-9][0-9]*$'; then
+        warn "Invalid DPI '${DPI}', continuing without DPI..."
+    else
+        FLAG_DPI="-dpi ${DPI}"
+    fi
+fi
+
 XEPHYR_ARGS="\
--resizeable \
+${FLAG_SIZE} \
+${FLAG_DPI} \
 -no-host-grab \
 +extension RANDR \
 +extension RENDER \
